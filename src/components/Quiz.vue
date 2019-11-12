@@ -111,7 +111,7 @@ export default {
 	font-size: 1.2rem;
 }
 .btn-large:hover {
-	opacity: 50%;
+	opacity: 90%;
 }
 .title {
 	text-transform: uppercase;
