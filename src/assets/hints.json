@@ -1,0 +1,28 @@
+{
+    "data": [
+        {
+            "artikel": "der",
+            "hint": "If a word ends with -or, -ling, -smus or -ig, it always has DER."
+        },
+        {
+            "artikel": "das",
+            "hint": "German words that begin with ge- are usually neuter (DAS)."
+        },
+        {
+            "artikel": "die",
+            "hint": "Any noun ending in -ung, -schaft, -keit or -heit will always be DIE."
+        },
+        {
+            "artikel": "die",
+            "hint": "The large majority of nouns which end in -e are feminine (DIE)."
+        },
+        {
+            "artikel": "der",
+            "hint": "The majority of singular nouns ending in -er are masculine (DER)."
+        },
+        {
+            "artikel": "das",
+            "hint": "The large majority of nouns beginning with Ge- are neuter (DAS)."
+        }
+    ]
+}
