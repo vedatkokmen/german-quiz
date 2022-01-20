@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="app">
 		<div class="container">
 			<div class="col s12">
 				<div v-if="!started" class="title">
@@ -8,43 +8,69 @@
 			</div>
 			<!-- Col end -->
 			<div class="col s12">
-				<div v-if="started === true" class="title">
-					<h1>{{ paragraf }}</h1>
+				<div v-if="started" class="title">
+					<h1>{{ paragraph }}</h1>
 				</div>
 			</div>
 			<div class="col s12">
-				<div v-show="started === true" class="score">
-					<h3>Gesamtpunktzahl: {{ score }}</h3>
-					<p class="flow-text">Falsch: {{ falsch }}</p>
+				<div v-show="started" class="score">
+					<h3>Score: {{ score }}</h3>
+					<p class="flow-text">False: {{ falsch }}</p>
 				</div>
 			</div>
 			<div class="col s12">
 				<button
-					v-show="started === false"
+					v-show="!started"
 					@click="getWord"
-					class="waves-effect waves-yellow btn-large btn-flat blue"
-				>START</button>
+					class="waves-effect btn-large btn-flat blue"
+				>
+					START
+				</button>
 			</div>
 			<div class="col s12">
-				<div v-show="started === true" @click="answered" id="buttons">
-					<button data-value="der" class="waves-effect waves-yellow btn-large btn-flat blue" id="der">DER</button>
-					<button data-value="die" class="waves-effect waves-yellow btn-large btn-flat pink" id="die">DIE</button>
-					<button data-value="das" class="waves-effect waves-yellow btn-large btn-flat teal" id="das">DAS</button>
+				<div v-show="started" @click="answered" id="buttons">
+					<button
+						data-value="der"
+						class="waves-effect btn-large btn-flat blue"
+						id="der"
+					>
+						DER
+					</button>
+					<button
+						data-value="die"
+						class="waves-effect btn-large btn-flat pink"
+						id="die"
+					>
+						DIE
+					</button>
+					<button
+						data-value="das"
+						class="waves-effect btn-large btn-flat teal"
+						id="das"
+					>
+						DAS
+					</button>
 				</div>
 			</div>
 
-			<div v-show="started === true" class="col s12">
-				<button class="waves-effect waves-yellow btn-large btn-flat orange" @click="getHint">HINT</button>
+			<div v-show="started" class="col s12">
+				<button class="waves-effect btn-large btn-flat orange" @click="getHint">
+					HINT
+				</button>
 				<div class="hint-block">
-					<p class="flow-text" v-show="hinted === true">{{ hintPara }}</p>
+					<p class="flow-text" v-show="hinted">{{ hintPara }}</p>
 				</div>
 			</div>
+		</div>
+		<div class="">
+			<small>Created by Vedat Kökmen</small>
 		</div>
 	</div>
 </template>
 
 <script>
 import { setInterval } from "timers";
+
 export default {
 	data() {
 		return {
@@ -56,7 +82,7 @@ export default {
 			hintObj: "null",
 			hintPara: "",
 			wordSource: "",
-			paragraf: "",
+			paragraph: "",
 			counterSec: 5,
 			buttons: document.getElementById("buttons"),
 			richtig: 0,
@@ -68,7 +94,7 @@ export default {
 			var random = Math.floor(Math.random() * (this.words.length - 1));
 			this.started = true;
 			this.wordSource = this.words[random];
-			this.paragraf = this.wordSource.source;
+			this.paragraph = this.wordSource.source;
 			var interval = setInterval(() => {
 				if (this.counterSec == 0) {
 					clearInterval(interval);
@@ -83,8 +109,8 @@ export default {
 				this.getWord();
 				M.toast({ html: "Es ist richtig!", displayLength: 1000 });
 			} else {
-				this.getWord();
 				this.falsch++;
+				this.getWord();
 				M.toast({ html: "Es ist falsch!", displayLength: 1000 });
 			}
 		},
@@ -104,15 +130,33 @@ export default {
 </script>
 
 <style scoped>
+.app {
+	background-color: #eeeeee;
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.container {
+	background: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container:hover {
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
 .btn-large {
 	margin-right: 1rem;
 	color: white;
 	font-weight: bold;
 	font-size: 1.2rem;
 }
-.btn-large:hover {
-	opacity: 90%;
-}
+
 .title {
 	text-transform: uppercase;
 }
